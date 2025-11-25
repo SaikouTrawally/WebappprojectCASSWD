@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gym Workout Logger</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Gym Workout Logger</h1>
+
+<form action="insertscreen.php" method="POST">
+    <label>Workout Type:</label>
+    <select name="type" required>
+        <option>Push</option>
+        <option>Pull</option>
+        <option>Legs</option>
+        <option>Cardio</option>
+    </select>
+
+    <label>Exercise:</label>
+    <input type="text" name="exercise" required>
+
+    <label>Sets:</label>
+    <input type="number" name="sets" required>
+
+    <label>Reps:</label>
+    <input type="number" name="reps" required>
+
+    <label>Weight (kg):</label>
+    <input type="number" name="weight">
+
+    <button type="submit">Add Workout</button>
+</form>
+
+<a href="displayscreen.php">View All Workouts</a>
+
+</body>
+</html>
