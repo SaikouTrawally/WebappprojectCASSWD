@@ -38,6 +38,7 @@ $result = mysqli_query($conn, "SELECT * FROM workouts ORDER BY date_logged DESC"
 </table>
 
 <a href="index.html">Back</a>
+<a href="edit.php?id=<?php echo $row['id']; ?>">Edit</a>
 
 </body>
 </html>
