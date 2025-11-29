@@ -1,34 +1,15 @@
 <?php
 require "db.php";
 
-if (!isset($_GET['id'])) {
-    header("Location: index.php");
-    exit;
-}
+$error = "";
+$title = "";
+$author = "";
+$category_id = "";
 
-$id = $_GET['id'];
-
-// Get book data
-$stmt = $conn->prepare("SELECT * FROM books WHERE id = ?");
-$stmt->bind_param("i", $id);
-$stmt->execute();
-$book = $stmt->get_result()->fetch_assoc();
-
-if (!$book) {
-    header("Location: index.php");
-    exit;
-}
-
-$title = $book['title'];
-$author = $book['author'];
-$category_id = $book['category_id'];
-
-// Fetch categories
+// Fetch categories for dropdown
 $catQuery = $conn->query("SELECT * FROM categories");
 
-$error = "";
-
-// Handle update
+// Handle submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $title = trim($_POST['title']);
     $author = trim($_POST['author']);
@@ -37,8 +18,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($title == "" || $author == "" || $category_id == "") {
         $error = "All fields are required.";
     } else {
-        $stmt = $conn->prepare("UPDATE books SET title=?, author=?, category_id=? WHERE id=?");
-        $stmt->bind_param("ssii", $title, $author, $category_id, $id);
+        $stmt = $conn->prepare("INSERT INTO books (title, author, category_id) VALUES (?, ?, ?)");
+        $stmt->bind_param("ssi", $title, $author, $category_id);
         $stmt->execute();
 
         header("Location: index.php");
@@ -50,18 +31,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Edit Book</title>
+    <title>Add Book</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <nav class="navbar">
-    <h2>Edit Book</h2>
+    <h2>Add New Book</h2>
     <a href="index.php">Home</a>
 </nav>
 
 <div class="container">
-    <h1>Edit Book</h1>
+    <h1>Add Book</h1>
 
     <?php if ($error) { ?>
         <p class="error"><?php echo $error; ?></p>
@@ -77,21 +58,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label>Category</label>
         <select name="category_id">
             <option value="">-- Select Category --</option>
-
+            
             <?php while ($row = $catQuery->fetch_assoc()): ?>
                 <option value="<?= $row['id'] ?>" 
-                    <?= $category_id == $row['id'] ? "selected" : "" ?>>
+                    <?= $category_id == $row['id'] ? 'selected' : '' ?>>
                     <?= htmlspecialchars($row['name']) ?>
                 </option>
             <?php endwhile; ?>
-
         </select>
 
-        <button type="submit">Save Changes</button>
+        <button type="submit">Add Book</button>
     </form>
 </div>
 
 </body>
 </html>
-
-
