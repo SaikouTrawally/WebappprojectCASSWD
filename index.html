@@ -1,38 +1,33 @@
+
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Gym Workout Logger</title>
+    <title>Add Workout Entry</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h1>Gym Workout Logger</h1>
+<h2>Add Workout Entry</h2>
 
-<form action="insertscreen.php" method="POST">
-    <label>Workout Type:</label>
-    <select name="type" required>
-        <option>Push</option>
-        <option>Pull</option>
-        <option>Legs</option>
-        <option>Cardio</option>
-    </select>
+<form action="insert.php" method="POST">
 
     <label>Exercise:</label>
-    <input type="text" name="exercise" required>
+    <select name="exercise" required>
+        <option value="Bench Press">Bench Press</option>
+        <option value="Squat">Squat</option>
+        <option value="Deadlift">Deadlift</option>
+        <option value="Shoulder Press">Shoulder Press</option>
+    </select>
 
-    <label>Sets:</label>
-    <input type="number" name="sets" required>
+    <label>Weight (kg)</label>
+    <input type="number" name="weight" required>
 
-    <label>Reps:</label>
+    <label>Reps</label>
     <input type="number" name="reps" required>
 
-    <label>Weight (kg):</label>
-    <input type="number" name="weight">
-
-    <button type="submit">Add Workout</button>
+    <button type="submit">Add Entry</button>
 </form>
-
-<a href="displayscreen.php">View All Workouts</a>
 
 </body>
 </html>
+
