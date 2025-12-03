@@ -1,12 +1,6 @@
-<<<<<<< HEAD
-<?php include("nav.php"); ?>
-
-<?php  
-include "database.php";
-=======
-<?php  
-include "db.php";
->>>>>>> 9f674e3df029a11b69f983ebcf2ec301d76ecca2
+<?php 
+include("nav.php"); 
+include("database.php");
 
 $type = $_POST['type'];
 $exercise = $_POST['exercise'];
@@ -17,12 +11,10 @@ $weight = $_POST['weight'];
 $sql = "INSERT INTO workouts (type, exercise, sets, reps, weight)
         VALUES ('$type', '$exercise', $sets, $reps, $weight)";
 
-if (mysqli_query($conn, $sql)) {
-    echo "Workout added! <br><br>";
-    echo "<a href='index.html'>Back</a>";
+if ($conn->query($sql) === TRUE) {
+    echo "Entry added successfully!";
 } else {
-    echo "Error: " . mysqli_error($conn);
+    echo "Error: " . $conn->error;
 }
-
-mysqli_close($conn);
 ?>
+
