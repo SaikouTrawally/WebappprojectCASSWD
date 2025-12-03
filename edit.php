@@ -1,8 +1,13 @@
+<<<<<<< HEAD
 <?php include("nav.php"); ?>
 
 
 <?php
 require "database.php";
+=======
+<?php
+require "db.php";
+>>>>>>> 9f674e3df029a11b69f983ebcf2ec301d76ecca2
 
 if (!isset($_GET['id'])) {
     header("Location: index.php");

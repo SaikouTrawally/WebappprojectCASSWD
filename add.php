@@ -1,6 +1,9 @@
+<<<<<<< HEAD
 <?php include("nav.php"); ?>
 
 
+=======
+>>>>>>> 9f674e3df029a11b69f983ebcf2ec301d76ecca2
 <?php
 require "db.php";
 

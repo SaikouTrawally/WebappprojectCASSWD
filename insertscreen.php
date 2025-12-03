@@ -1,7 +1,12 @@
+<<<<<<< HEAD
 <?php include("nav.php"); ?>
 
 <?php  
 include "database.php";
+=======
+<?php  
+include "db.php";
+>>>>>>> 9f674e3df029a11b69f983ebcf2ec301d76ecca2
 
 $type = $_POST['type'];
 $exercise = $_POST['exercise'];

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 CREATE DATABASE gym_logger;
 CREATE TABLE IF NOT EXISTS workouts (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -15,3 +16,12 @@ INSERT INTO workouts (user_id, workout_date, workout_type, duration_minutes, cal
 (2, '2025-12-01', 'Cycling', 45, 400),
 (1, '2025-12-02', 'Weight Training', 60, 500),
 (3, '2025-12-02', 'Swimming', 30, 250)
+=======
+CREATE TABLE exercises (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL
+);
+
+INSERT INTO exercises (name) VALUES
+('Bench Press'), ('Squat'), ('Deadlift'), ('Shoulder Press');
+>>>>>>> 9f674e3df029a11b69f983ebcf2ec301d76ecca2
