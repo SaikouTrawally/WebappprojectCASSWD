@@ -1,1 +1,0 @@
-ALTER TABLE workouts ADD notes VARCHAR(255) AFTER weight;

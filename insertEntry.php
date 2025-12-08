@@ -1,13 +1,18 @@
 <?php
+session_start();
+if (!isset($_SESSION['email'])) {
+    header("Location: login.php");
+    exit();
+}
+
 include "database.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $exercise = $_POST['exercise'];
-    $weight = $_POST['weight'];
     $reps = $_POST['reps'];
+    $weight = $_POST['weight'];
 
-    // Insert only columns that exist in your DB
     $sql = "INSERT INTO entries (exercise, weight, reps)
             VALUES ('$exercise', '$weight', '$reps')";
 
@@ -19,3 +24,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
+
