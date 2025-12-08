@@ -1,22 +1,21 @@
-<?php 
-include("nav.php"); 
-include("database.php");
+<?php
+include "database.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $type = $_POST['type'];
     $exercise = $_POST['exercise'];
-    $sets = $_POST['sets'];
-    $reps = $_POST['reps'];
     $weight = $_POST['weight'];
+    $reps = $_POST['reps'];
 
-    $sql = "INSERT INTO workouts (type, exercise, sets, reps, weight)
-            VALUES ('$type', '$exercise', $sets, $reps, $weight)";
+    // Insert only columns that exist in your DB
+    $sql = "INSERT INTO entries (exercise, weight, reps)
+            VALUES ('$exercise', '$weight', '$reps')";
 
     if ($conn->query($sql) === TRUE) {
-        echo "<h2>Workout added successfully! 💪</h2>";
+        header("Location: displayscreen.php");
+        exit();
     } else {
-        echo "<h2>Error: " . $conn->error . "</h2>";
+        echo "Error: " . $conn->error;
     }
 }
 ?>
