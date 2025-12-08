@@ -4,50 +4,81 @@ if (!isset($_SESSION['email'])) {
     header("Location: login.php");
     exit();
 }
-?>
 
-<?php
-include("nav.php");
-include("database.php");
+include 'database.php';
 
-// FIX: date_logged does not exist, so use created_at instead.
-$sql = "SELECT * FROM entries ORDER BY created_at DESC";
-$result = mysqli_query($conn, $sql);
+
+$sql = "SELECT * FROM workouts ORDER BY id DESC";
+$result = $conn->query($sql);
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Entries</title>
+    <title>Your Workouts</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background: #f2f2f2;
+        }
+        .delete-btn {
+            background: #d9534f;
+            padding: 6px 10px;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .delete-btn:hover {
+            background: #b52b27;
+        }
+    </style>
 </head>
 <body>
 
-<h1>Workout Entries</h1>
+<?php include 'nav.php'; ?>
 
-<table border="1" cellpadding="10">
+<h2>Your Workouts</h2>
+
+<table>
     <tr>
         <th>ID</th>
+        <th>Type</th>
         <th>Exercise</th>
-        <th>Weight</th>
+        <th>Sets</th>
         <th>Reps</th>
-        <th>Date Logged</th>
+        <th>Weight</th>
+        <th>Notes</th>
+        <th>Date Added</th>
+        <th>Actions</th>
     </tr>
 
-    <?php
-    if (mysqli_num_rows($result) > 0) {
-        while ($row = mysqli_fetch_assoc($result)) {
-            echo "<tr>";
-            echo "<td>".$row['id']."</td>";
-            echo "<td>".$row['exercise']."</td>";
-            echo "<td>".$row['weight']."</td>";
-            echo "<td>".$row['reps']."</td>";
-            echo "<td>".$row['created_at']."</td>";
-            echo "</tr>";
-        }
-    } else {
-        echo "<tr><td colspan='5'>No entries found.</td></tr>";
-    }
-    ?>
+    <?php while ($row = $result->fetch_assoc()): ?>
+        <tr>
+            <td><?= $row['id'] ?></td>
+            <td><?= $row['type'] ?></td>
+            <td><?= $row['exercise'] ?></td>
+            <td><?= $row['sets'] ?></td>
+            <td><?= $row['reps'] ?></td>
+            <td><?= $row['weight'] ?></td>
+            <td><?= $row['notes'] ?></td>
+            <td><?= $row['created_at'] ?></td>
+            <td>
+                <a class="delete-btn" href="delete.php?id=<?= $row['id'] ?>" 
+                   onclick="return confirm('Are you sure you want to delete this workout?');">
+                   Delete
+                </a>
+            </td>
+        </tr>
+    <?php endwhile; ?>
 
 </table>
 

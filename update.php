@@ -1,22 +1,21 @@
-<?php include("nav.php"); ?>
-
-
 <?php
-include "database.php";
+include 'database.php';
 
 $id = $_POST['id'];
+$type = $_POST['type'];
 $exercise = $_POST['exercise'];
-$weight = $_POST['weight'];
+$sets = $_POST['sets'];
 $reps = $_POST['reps'];
+$weight = $_POST['weight'];
+$notes = $_POST['notes'];
 
-$sql = "UPDATE gym_logs 
-        SET exercise='$exercise', weight='$weight', reps='$reps'
+$sql = "UPDATE workouts 
+        SET type='$type', exercise='$exercise', sets='$sets',
+            reps='$reps', weight='$weight', notes='$notes'
         WHERE id=$id";
 
-if ($conn->query($sql)) {
-    header("Location: display.php");
-    exit;
-} else {
-    echo "Error updating record: " . $conn->error;
-}
+$conn->query($sql);
+
+header("Location: displayscreen.php");
+exit();
 ?>
