@@ -45,6 +45,19 @@ $result = $conn->query($sql);
 <body>
 
 <?php include 'nav.php'; ?>
+<?php if (isset($_GET['success'])) ?>
+    <div style="
+        background:#d4edda;
+        padding:12px;
+        border-radius:6px;
+        color:#155724;
+        margin:20px auto;
+        max-width:600px;
+        border:1px solid #c3e6cb;
+        font-size:16px;
+    ">
+        ✅ Workout added successfully!
+    </div>
 
 <h2>Your Workouts</h2>
 

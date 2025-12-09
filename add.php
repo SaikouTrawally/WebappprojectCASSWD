@@ -1,107 +1,56 @@
-<?php
-session_start();
-if (!isset($_SESSION['email'])) {
-    header("Location: login.php");
-    exit();
-}
-
-
-include 'database.php';
-
-// Handle form submission
-$message = "";
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-    $type = $_POST['type'];
-    $exercise = $_POST['exercise'];
-    $sets = $_POST['sets'];
-    $reps = $_POST['reps'];
-    $weight = $_POST['weight'];
-    $notes = $_POST['notes'];
-
-    $sql = "INSERT INTO workouts (type, exercise, sets, reps, weight, notes)
-            VALUES ('$type', '$exercise', '$sets', '$reps', '$weight', '$notes')";
-
-    if ($conn->query($sql) === TRUE) {
-        $message = "Workout added successfully!";
-    } else {
-        $message = "Error: " . $conn->error;
-    }
-}
-?>
+<?php include 'nav.php'; ?>
 <!DOCTYPE html>
 <html>
 <head>
     <title>Add Workout</title>
+
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f5f5f5;
-            padding: 20px;
-        }
-
-        .container {
-            width: 400px;
-            margin: auto;
-            background: white;
+        .form-card {
+            max-width: 500px;
+            margin: 30px auto;
             padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 12px rgba(0,0,0,0.1);
         }
 
-        h2 {
-            margin-top: 0;
-        }
-
-        label {
-            font-weight: bold;
-            display: block;
-            margin-top: 12px;
-        }
-
-        input, textarea {
-            width: 100%;
-            padding: 8px;
-            margin-top: 6px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        button {
-            margin-top: 20px;
+        input, textarea, select {
             width: 100%;
             padding: 10px;
-            background: #0078ff;
-            color: white;
-            border: none;
+            margin-bottom: 12px;
+            border: 1px solid #ccc;
             border-radius: 6px;
-            font-size: 15px;
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(to right, #4A77FF, #1162FF);
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 8px;
             cursor: pointer;
         }
 
-        button:hover {
-            background: #005fcc;
+        .btn-primary:hover {
+            opacity: 0.9;
         }
 
-        .message {
-            padding: 10px;
-            margin-bottom: 15px;
-            background: #e2ffe2;
-            border-left: 5px solid #2da52d;
+        /* Slider styling */
+        input[type="range"] {
+            width: 100%;
+            margin-top: 5px;
         }
     </style>
+
 </head>
 <body>
 
-<?php include("nav.php"); ?>
-<div class="container">
+<div class="form-card">
     <h2>Add Workout</h2>
 
-    <?php if ($message != ""): ?>
-        <div class="message"><?= $message ?></div>
-    <?php endif; ?>
-
-    <form method="POST" action="add.php">
+    <form action="insertEntry.php" method="POST">
 
         <label>Type:</label>
         <input type="text" name="type" required>
@@ -110,21 +59,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="text" name="exercise" required>
 
         <label>Sets:</label>
-        <input type="number" name="sets">
+        <input type="number" name="sets" required>
 
         <label>Reps:</label>
-        <input type="number" name="reps">
+        <input type="number" name="reps" required>
 
         <label>Weight (kg):</label>
-        <input type="number" name="weight">
+
+        <!-- Weight Slider -->
+        <input 
+            type="range" 
+            id="weightSlider" 
+            name="weight" 
+            min="0" 
+            max="200" 
+            value="40" 
+            step="1"
+            oninput="updateWeightValue()"
+        >
+
+        <!-- Slider Value -->
+        <span id="weightValue">40</span> kg
+        <br><br>
 
         <label>Notes:</label>
-        <textarea name="notes" rows="3"></textarea>
+        <textarea name="notes"></textarea>
 
-        <button type="submit">Add Workout</button>
+        <button class="btn-primary" type="submit">Add Workout</button>
     </form>
-
 </div>
+
+<script>
+function updateWeightValue() {
+    document.getElementById('weightValue').innerText =
+        document.getElementById('weightSlider').value;
+}
+</script>
 
 </body>
 </html>

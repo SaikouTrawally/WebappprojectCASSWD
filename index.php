@@ -37,6 +37,27 @@ if (!isset($_SESSION['email'])) {
 
 <div class="container">
     <h1>Welcome to Your Gym Logger</h1>
+    <div style="
+    max-width:600px;
+    margin:30px auto;
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 0 12px rgba(0,0,0,0.1);
+">
+ <div style="
+    max-width:650px;
+    margin:30px auto;
+    padding:20px;
+    background:white;
+    border-radius:12px;
+    box-shadow:0 0 10px rgba(0,0,0,0.12);
+">
+    <h3 style="margin:0;">Saikou Trawally — Certified PT</h3>
+    <p style="margin:6px 0 0; color:#555;">
+        Strength & Hypertrophy Specialist • 5+ Years Experience
+    </p>
+</div>
 
     <p>This web application allows you to track and store your gym workouts using a MySQL database.</p>
 
