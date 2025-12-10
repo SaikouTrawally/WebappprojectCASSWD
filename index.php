@@ -11,6 +11,7 @@ if (!isset($_SESSION['email'])) {
 <html>
 <head>
     <title>Gym Logger - Home</title>
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -21,14 +22,37 @@ if (!isset($_SESSION['email'])) {
         .container {
             max-width: 700px;
             padding: 20px;
+            margin: auto;
         }
 
         h1 {
             margin-bottom: 10px;
-            font-size: 32px;
+            font-size: 36px;
+            font-weight: bold;
+        }
+
+        .profile-section {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .profile-info {
+            background: #f8f8f8;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 20px;
+        }
+
+        .profile-info .name {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .profile-info .details {
+            font-size: 20px;
+            margin-top: 5px;
         }
 
         ul {
@@ -36,52 +60,39 @@ if (!isset($_SESSION['email'])) {
         }
     </style>
 </head>
-<body>
 
+<body>
 <div class="container">
 
-    <h1>
-        <img src="images/dumbell,jpg" width="35" alt="dumbbell" style="vertical-align:middle;">
-        Welcome to Your Gym Logger
-    </h1>
+    <!-- MAIN PAGE TITLE -->
+    <h1>Welcome to Your Gym Logger</h1>
 
-    <div style="
-        max-width:650px;
-        margin:30px auto;
-        padding:20px;
-        background:white;
-        border-radius:12px;
-        box-shadow:0 0 10px rgba(0,0,0,0.12);
-    ">
-        <h3 style="margin:0;">Saikou Trawally — Certified PT</h3>
-        <p style="margin:6px 0 0; color:#555;">
-            Strength & Hypertrophy Specialist • 5+ Years Experience
-        </p>
+    <p>This web application allows you to track and store your workouts directly in your MySQL database.</p>
 
-        <li><a href="https://www.tiktok.com/@st_fit00" target="_blank">TikTok</a></li>
+    <!-- PROFILE SECTION UNDER HEADING -->
+    <div class="profile-section">
+        <img src="images/dumbell.jpg" 
+             alt="PT Image"
+             style="width:220px; height:auto; border-radius:10px;">
+
+        <div class="profile-info">
+            <div class="name">Saikou Trawally — Certified PT</div>
+            <div class="details">Strength & Hypertrophy Specialist • 5+ Years Experience</div>
+            <a href="https://www.tiktok.com/@st_fit00" target="_blank">TikTok</a>
+        </div>
     </div>
 
-    <p>This web application allows you to track and store your gym workouts using a MySQL database.</p>
-
-    <h3 style="font-size: 24px;">Features:</h3>
+    <h2>Features:</h2>
     <ul>
-        <li>Add new workouts including type, exercise, sets, reps, and weight</li>
-        <li>Automatically store your workouts in the <strong>workouts</strong> table</strong></li>
-        <li>View all recorded workouts in a structured table</li>
-        <li>Uses PHP, MySQL, and a simple UI with navigation</li>
+        <li>Add new workouts including type, exercise, sets, reps, and weight.</li>
+        <li>Automatically store your workouts in the MySQL database.</li>
+        <li>View all logged workouts neatly displayed.</li>
+        <li>Simple and clean interface designed for easy use.</li>
     </ul>
 
-    <p>
-        Use the navigation bar above to get started:<br>
-        ➤ <strong>Add Workout</strong> to log a new session<br>
-        ➤ <strong>View Workouts</strong> to see all past workouts
-    </p>
-
 </div>
-
 </body>
 </html>
-
 
 
 
