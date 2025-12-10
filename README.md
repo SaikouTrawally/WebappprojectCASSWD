@@ -5,7 +5,7 @@ Web application with MySQL for SSWD assignment
 
 This project is a simple **PHP + MySQL web application** that allows users to record and view workout entries. It was created as part of the **Server-Side Web Development (SSWD)** module in TU Dublin.
 
-## 🏋️‍♂️ Project Overview
+##  Project Overview
 The application provides:
 - A form to **add workout entries**  
 - A page to **display all workouts from the database**  
@@ -15,33 +15,40 @@ The application provides:
 
 All entries are stored in a **MySQL database** and displayed using **PHP server-side rendering**.
 
-## 📂 Technologies Used
+## Technologies Used
 - **PHP** (backend)
 - **MySQL / MariaDB** (database)
 - **HTML & CSS**  
 - **MySQL Workbench**  
 - **GitHub for version control**
 
-## 📌 Database Structure
+##  Database Structure
 The project uses two main tables:
 
 ### **workout_entries**
-| Field | Type | Description |
-|-------|------|-------------|
-| id | INT | Primary key |
-| workout_type | VARCHAR(255) | Type of workout |
-| duration | INT | Minutes |
-| calories | INT | Estimated calories burned |
-| date | DATE | Date of workout |
+workout_entries
+This table stores each workout that gets added to the system.
+It includes:
+
+id – the unique ID for each entry
+workout_type – the type of workout (e.g., running, weights, cycling)
+duration – how long the workout lasted (in minutes)
+calories – an estimate of calories burned
+date – the date the workout was done
 
 ### **login**
-| Field | Type | Description |
-|-------|------|-------------|
-| id | INT | Primary key |
-| name | VARCHAR(255) | User name |
-| email | VARCHAR(255) | User email |
+login
 
-## 🚀 How to Run the Project
+This is a small table used for storing basic user details.
+It has:
+
+name – the user’s name
+email – the user’s email address (must be unique)
+
+##  How to Run the Project
 1. Clone the repository:
    ```bash
    git clone <your-repo-link>
+
+   Once cloned, navigate to the project directory and run the following command:
+    php -S localhost:8000   
