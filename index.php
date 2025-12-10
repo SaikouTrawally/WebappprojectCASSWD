@@ -57,6 +57,8 @@ if (!isset($_SESSION['email'])) {
     <p style="margin:6px 0 0; color:#555;">
         Strength & Hypertrophy Specialist • 5+ Years Experience
     </p>
+    <li><a href="https://www.tiktok.com/@st_fit00" target="_blank">TikTok</a></li>
+
 </div>
 
     <p>This web application allows you to track and store your gym workouts using a MySQL database.</p>
